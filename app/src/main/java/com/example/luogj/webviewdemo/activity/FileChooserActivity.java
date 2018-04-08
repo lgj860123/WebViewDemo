@@ -11,43 +11,38 @@ import com.example.luogj.webviewdemo.customView.X5WebView;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 
-public class FilechooserActivity extends Activity {
-
-    /**
-     * 用于展示在web端<input type=text>的标签被选择之后，文件选择器的制作和生成
-     */
-
+/**
+ * 用于展示在web端<input type=text>的标签被选择之后，文件选择器的制作和生成
+ */
+public class FileChooserActivity extends Activity {
     private X5WebView webView;
     private ValueCallback<Uri> uploadFile;
     private ValueCallback<Uri[]> uploadFiles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.filechooser_layout);
-
-        webView = (X5WebView) findViewById(R.id.web_filechooser);
-
+        webView = findViewById(R.id.web_filechooser);
         webView.setWebChromeClient(new WebChromeClient() {
             // For Android 3.0+
             public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
                 Log.i("test", "openFileChooser 1");
-                FilechooserActivity.this.uploadFile = uploadFile;
+                FileChooserActivity.this.uploadFile = uploadFile;
                 openFileChooseProcess();
             }
 
             // For Android < 3.0
             public void openFileChooser(ValueCallback<Uri> uploadMsgs) {
                 Log.i("test", "openFileChooser 2");
-                FilechooserActivity.this.uploadFile = uploadFile;
+                FileChooserActivity.this.uploadFile = uploadFile;
                 openFileChooseProcess();
             }
 
             // For Android  > 4.1.1
             public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
                 Log.i("test", "openFileChooser 3");
-                FilechooserActivity.this.uploadFile = uploadFile;
+                FileChooserActivity.this.uploadFile = uploadFile;
                 openFileChooseProcess();
             }
 
@@ -56,7 +51,7 @@ public class FilechooserActivity extends Activity {
                                              ValueCallback<Uri[]> filePathCallback,
                                              FileChooserParams fileChooserParams) {
                 Log.i("test", "openFileChooser 4:" + filePathCallback.toString());
-                FilechooserActivity.this.uploadFiles = filePathCallback;
+                FileChooserActivity.this.uploadFiles = filePathCallback;
                 openFileChooseProcess();
                 return true;
             }
@@ -112,7 +107,6 @@ public class FilechooserActivity extends Activity {
      */
     @Override
     protected void onDestroy() {
-        // TODO Auto-generated method stub
         if (this.webView != null) {
             webView.destroy();
         }

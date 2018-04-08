@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends Activity {
+
     public static boolean firstOpening = true;
     private static String[] titles = null;
 
@@ -58,7 +59,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         this.new_init();
-
         // this.gridView.setAdapter(gridAdapter);
         super.onResume();
     }
@@ -66,27 +66,25 @@ public class MainActivity extends Activity {
     // ////////////////////////////////////////////////////////////////////////////////
     // initiate new UI content
     private void new_init() {
-        items = new ArrayList<HashMap<String, Object>>();
+        items = new ArrayList<>();
         this.gridView = (GridView) this.findViewById(R.id.item_grid);
 
         if (gridView == null)
             throw new IllegalArgumentException("the gridView is null");
 
         titles = getResources().getStringArray(R.array.index_titles);
-        int[] iconResourse = { R.drawable.tbsweb, R.drawable.fullscreen,
-                R.drawable.filechooser };
+        int[] iconResource = { R.drawable.tbsweb, R.drawable.fullscreen, R.drawable.filechooser };
 
         HashMap<String, Object> item = null;
         // HashMap<String, ImageView> block = null;
         for (int i = 0; i < titles.length; i++) {
-            item = new HashMap<String, Object>();
+            item = new HashMap<>();
             item.put("title", titles[i]);
-            item.put("icon", iconResourse[i]);
+            item.put("icon", iconResource[i]);
 
             items.add(item);
         }
-        this.gridAdapter = new SimpleAdapter(this, items,
-                R.layout.function_block, new String[] { "title", "icon" },
+        this.gridAdapter = new SimpleAdapter(this, items, R.layout.function_block, new String[] { "title", "icon" },
                 new int[] { R.id.Item_text, R.id.Item_bt });
         if (null != this.gridView) {
             this.gridView.setAdapter(gridAdapter);
@@ -99,29 +97,24 @@ public class MainActivity extends Activity {
                     Intent intent = null;
                     switch (position) {
                         case FILE_CHOOSER: {
-                            intent = new Intent(MainActivity.this,
-                                    FilechooserActivity.class);
+                            intent = new Intent(MainActivity.this,FileChooserActivity.class);
                             MainActivity.this.startActivity(intent);
 
                         }
                         break;
+
                         case FULL_SCREEN_VIDEO: {
-                            intent = new Intent(MainActivity.this,
-                                    FullScreenActivity.class);
+                            intent = new Intent(MainActivity.this,FullScreenActivity.class);
                             MainActivity.this.startActivity(intent);
                         }
                         break;
 
                         case TBS_WEB: {
-                            intent = new Intent(MainActivity.this,
-                                    BrowserActivity.class);
+                            intent = new Intent(MainActivity.this, BrowserActivity.class);
                             MainActivity.this.startActivity(intent);
-
                         }
                         break;
-
                     }
-
                 }
             });
 
@@ -156,7 +149,6 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO Auto-generated method stub
                 Process.killProcess(Process.myPid());
             }
         });
