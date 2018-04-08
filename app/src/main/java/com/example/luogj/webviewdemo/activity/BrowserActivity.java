@@ -43,10 +43,10 @@ import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 import com.tencent.smtt.utils.TbsLog;
 
+/**
+ * 作为一个浏览器的示例展示出来，采用android+web的模式
+ */
 public class BrowserActivity extends Activity {
-	/**
-	 * 作为一个浏览器的示例展示出来，采用android+web的模式
-	 */
 	private X5WebView mWebView;
 	private ViewGroup mViewParent;
 	private ImageButton mBack;
@@ -104,9 +104,7 @@ public class BrowserActivity extends Activity {
 		 */
 		setContentView(R.layout.activity_main);
 		mViewParent = (ViewGroup) findViewById(R.id.webView1);
-
-		initBtnListenser();
-
+		initBtnListener();
 		mTestHandler.sendEmptyMessageDelayed(MSG_INIT_UI, 10);
 
 	}
@@ -135,18 +133,14 @@ public class BrowserActivity extends Activity {
 																				// null,
 																				// android.R.attr.progressBarStyleHorizontal);
 		mPageLoadingProgressBar.setMax(100);
-		mPageLoadingProgressBar.setProgressDrawable(this.getResources()
-				.getDrawable(R.drawable.color_progressbar));
+		mPageLoadingProgressBar.setProgressDrawable(this.getResources().getDrawable(R.drawable.color_progressbar));
 	}
 
 	private void init() {
-
 		mWebView = new X5WebView(this, null);
-
 		mViewParent.addView(mWebView, new FrameLayout.LayoutParams(
 				FrameLayout.LayoutParams.FILL_PARENT,
 				FrameLayout.LayoutParams.FILL_PARENT));
-
 		initProgressBar();
 
 		mWebView.setWebViewClient(new WebViewClient() {
@@ -179,13 +173,11 @@ public class BrowserActivity extends Activity {
 			CustomViewCallback callback;
 
 			// /////////////////////////////////////////////////////////
-			//
 			/**
 			 * 全屏播放配置
 			 */
 			@Override
-			public void onShowCustomView(View view,
-					CustomViewCallback customViewCallback) {
+			public void onShowCustomView(View view,CustomViewCallback customViewCallback) {
 				FrameLayout normalView = (FrameLayout) findViewById(R.id.web_filechooser);
 				ViewGroup viewGroup = (ViewGroup) normalView.getParent();
 				viewGroup.removeView(normalView);
@@ -299,7 +291,7 @@ public class BrowserActivity extends Activity {
 		CookieSyncManager.getInstance().sync();
 	}
 
-	private void initBtnListenser() {
+	private void initBtnListener() {
 		mBack = (ImageButton) findViewById(R.id.btnBack1);
 		mForward = (ImageButton) findViewById(R.id.btnForward1);
 		mExit = (ImageButton) findViewById(R.id.btnExit1);
@@ -406,14 +398,12 @@ public class BrowserActivity extends Activity {
 			@Override
 			public void beforeTextChanged(CharSequence arg0, int arg1,
 					int arg2, int arg3) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				// TODO Auto-generated method stub
 
 			}
 		});
@@ -501,6 +491,7 @@ public class BrowserActivity extends Activity {
 	public static final int MSG_INIT_UI = 1;
 	private final int mUrlStartNum = 0;
 	private int mCurrentUrl = mUrlStartNum;
+	//handler消息机制
 	private Handler mTestHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {

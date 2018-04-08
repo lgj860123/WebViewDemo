@@ -12,21 +12,18 @@ import com.example.luogj.webviewdemo.R;
 import com.example.luogj.webviewdemo.customView.X5WebView;
 import com.example.luogj.webviewdemo.interfaces.WebViewJavaScriptFunction;
 
-
+/**
+ * 用于演示X5webview实现视频的全屏播放功能 其中注意 X5的默认全屏方式 与 android 系统的全屏方式
+ */
 public class FullScreenActivity extends Activity {
-
-	/**
-	 * 用于演示X5webview实现视频的全屏播放功能 其中注意 X5的默认全屏方式 与 android 系统的全屏方式
-	 */
 
 	X5WebView webView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.filechooser_layout);
-		webView = (X5WebView) findViewById(R.id.web_filechooser);
+		webView =  findViewById(R.id.web_filechooser);
 		webView.loadUrl("file:///android_asset/webpage/fullscreenVideo.html");
 
 		getWindow().setFormat(PixelFormat.TRANSLUCENT);
@@ -36,7 +33,6 @@ public class FullScreenActivity extends Activity {
 
 			@Override
 			public void onJsFunctionCalled(String tag) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -65,7 +61,6 @@ public class FullScreenActivity extends Activity {
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
-		// TODO Auto-generated method stub
 		try {
 			super.onConfigurationChanged(newConfig);
 			if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -80,7 +75,7 @@ public class FullScreenActivity extends Activity {
 	}
 
 	// /////////////////////////////////////////
-	// 向webview发出信息
+	// 向webView发出信息
 	private void enableX5FullscreenFunc() {
 
 		if (webView.getX5WebViewExtension() != null) {
@@ -93,8 +88,7 @@ public class FullScreenActivity extends Activity {
 
 			data.putInt("DefaultVideoScreen", 2);// 1：以页面内开始播放，2：以全屏开始播放；不设置默认：1
 
-			webView.getX5WebViewExtension().invokeMiscMethod("setVideoParams",
-					data);
+			webView.getX5WebViewExtension().invokeMiscMethod("setVideoParams",data);
 		}
 	}
 
@@ -109,8 +103,7 @@ public class FullScreenActivity extends Activity {
 
 			data.putInt("DefaultVideoScreen", 2);// 1：以页面内开始播放，2：以全屏开始播放；不设置默认：1
 
-			webView.getX5WebViewExtension().invokeMiscMethod("setVideoParams",
-					data);
+			webView.getX5WebViewExtension().invokeMiscMethod("setVideoParams",data);
 		}
 	}
 
@@ -125,8 +118,7 @@ public class FullScreenActivity extends Activity {
 
 			data.putInt("DefaultVideoScreen", 2);// 1：以页面内开始播放，2：以全屏开始播放；不设置默认：1
 
-			webView.getX5WebViewExtension().invokeMiscMethod("setVideoParams",
-					data);
+			webView.getX5WebViewExtension().invokeMiscMethod("setVideoParams",data);
 		}
 	}
 
@@ -141,8 +133,7 @@ public class FullScreenActivity extends Activity {
 
 			data.putInt("DefaultVideoScreen", 1);// 1：以页面内开始播放，2：以全屏开始播放；不设置默认：1
 
-			webView.getX5WebViewExtension().invokeMiscMethod("setVideoParams",
-					data);
+			webView.getX5WebViewExtension().invokeMiscMethod("setVideoParams",data);
 		}
 	}
 
