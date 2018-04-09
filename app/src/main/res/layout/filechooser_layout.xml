@@ -11,11 +11,11 @@
     </FrameLayout>
     
 
-    <com.example.test_webview_demo.utils.X5WebView
+    <com.example.luogj.webviewdemo.customView.X5WebView
         android:id="@+id/web_filechooser"
         android:layout_width="fill_parent"
         android:layout_height="match_parent">
-    </com.example.test_webview_demo.utils.X5WebView>
+    </com.example.luogj.webviewdemo.customView.X5WebView>
     
 
 </RelativeLayout>
